@@ -1,4 +1,4 @@
-import server from '@root/server';
+import server from './server';
 
-server.listen(() => 'Server is running');
+server.listen(3001);
 
