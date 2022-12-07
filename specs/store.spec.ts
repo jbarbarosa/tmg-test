@@ -15,8 +15,6 @@ describe("Store specifications", () => {
 
       describe("And again adding 'World' to the store", () => {
 
-        afterEach(async () => await request(app).delete('/store'))
-
         it("Should get the values 'World' and 'Hello' in sequence", async () => {
           await request(app).post('/store').send({ value: 'Hello' }).expect(201);
           await request(app).post('/store').send({ value: 'World' }).expect(201);

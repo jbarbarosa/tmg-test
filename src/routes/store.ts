@@ -14,10 +14,5 @@ store.post('/', (req, res) => {
   return res.sendStatus(201);
 });
 
-store.delete('/', (_, res) => {
-  instance.clear();
-  return res.sendStatus(200);
-});
-
 export default store;
 

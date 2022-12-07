@@ -4,7 +4,9 @@
     "project": "./tsconfig.json"
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "rules": {
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/return-await": "off",
@@ -17,7 +19,12 @@
     "@typescript-eslint/member-delimiter-style": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/space-before-function-paren": "off",
-    "curly": ["error", "multi"],
-    "comma-dangle": "off"
+    "curly": [
+      "error",
+      "multi"
+    ],
+    "comma-dangle": "off",
+    "no-multiple-empty-lines": "off",
+    "eol-last": "error"
   }
 }

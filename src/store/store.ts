@@ -15,5 +15,6 @@ class Store {
 }
 
 const instance = new Store();
+
 export default instance;
 
