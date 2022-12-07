@@ -1,4 +1,4 @@
-class Store {
+class Stack {
   private stack: String[] = [];
 
   public add(item: String) {
@@ -14,7 +14,7 @@ class Store {
   }
 }
 
-const instance = new Store();
+const instance = new Stack();
 
 export default instance;
 

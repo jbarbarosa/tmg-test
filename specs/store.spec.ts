@@ -1,33 +1,33 @@
 import app from '../src/server';
 import request from 'supertest';
 
-describe("Store specifications", () => {
-  describe("Given an empty store", () => {
+describe("Stack specifications", () => {
+  describe("Given an empty stack", () => {
 
-    describe("When adding 'Hello' to the store", () => {
-      describe("And pulling from the store", () => {
+    describe("When adding 'Hello' to the stack", () => {
+      describe("And pulling from the stack", () => {
         it("Should get the value 'Hello'", async () => {
-          await request(app).post('/store').send({ value: 'Hello' }).expect(201);
+          await request(app).post('/stack').send({ value: 'Hello' }).expect(201);
 
-          return request(app).put('/store').expect(200).expect({ value: 'Hello' });
+          return request(app).put('/stack').expect(200).expect({ value: 'Hello' });
         });
       });
 
-      describe("And again adding 'World' to the store", () => {
+      describe("And again adding 'World' to the stack", () => {
 
         it("Should get the values 'World' and 'Hello' in sequence", async () => {
-          await request(app).post('/store').send({ value: 'Hello' }).expect(201);
-          await request(app).post('/store').send({ value: 'World' }).expect(201);
+          await request(app).post('/stack').send({ value: 'Hello' }).expect(201);
+          await request(app).post('/stack').send({ value: 'World' }).expect(201);
 
-          await request(app).put('/store').expect(200).expect({ value: 'World' });
-          return request(app).put('/store').expect(200).expect({ value: 'Hello' });
+          await request(app).put('/stack').expect(200).expect({ value: 'World' });
+          return request(app).put('/stack').expect(200).expect({ value: 'Hello' });
         });
       });
     });
 
-    describe("When pulling from the store", () => {
+    describe("When pulling from the stack", () => {
       it("Should return an empty result", () => {
-        return request(app).put('/store').expect(204);
+        return request(app).put('/stack').expect(204);
       });
     });
   });
