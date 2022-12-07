@@ -20,7 +20,6 @@ Get item from stack
 "Again" would be returned
 Get item from stack
 "Hello" would be returned
-In-memory key-value store with TTL:
 
 ## In-memory key-value store with TTL
 The second piece of functionality is an in-memory key-value store that supports TTLs on the keys. Your interface should support:
