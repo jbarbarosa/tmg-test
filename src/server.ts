@@ -1,14 +1,18 @@
-import express from 'express';
+import express, { Express } from 'express';
 import { stack } from './routes';
 
-const app = express();
-app.use(express.json());
+function appFactory(): Express {
+  const app = express();
+  app.use(express.json());
 
-app.get('/', (_, res) => {
-  return res.sendStatus(200)
-});
+  app.get('/', (_, res) => {
+    return res.sendStatus(200)
+  });
 
-app.use('/stack', stack);
+  app.use('/stack', stack);
 
-export default app;
+  return app;
+}
 
+
+export default appFactory;

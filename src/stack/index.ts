@@ -9,9 +9,6 @@ class Stack {
     return this.stack.pop();
   }
 
-  public clear() {
-    this.stack = [];
-  }
 }
 
 const instance = new Stack();

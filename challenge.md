@@ -1,4 +1,4 @@
-#TMG NodeJS Test
+# TMG NodeJS Test
 Create a single Express-based app that serves two separate, unrelated pieces of functionality.
 
 ## In-memory stack (LIFO):
@@ -29,8 +29,8 @@ setting a TTL should be optional to the client when adding the key
 getting the value for a key
 this should respect the TTL for the key if provided
 deleting the value stored for a given key
-For example:
 
+For example:
 Set "name" to "John"
 Get "name"
 This returns John
@@ -41,7 +41,6 @@ Get "name" (within 30 seconds of the set)
 This returns "Larry"
 Get "name" (more than 30 seconds after the set)
 This returns an empty value
-Delivery and Expectations:
 
 ## In total your Express app should have 5 routes:
 

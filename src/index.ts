@@ -1,4 +1,4 @@
-import server from './server';
+import appFactory from './server';
 
-server.listen(3001);
+appFactory().listen(3001);
 
