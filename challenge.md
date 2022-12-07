@@ -14,7 +14,8 @@ Example requests:
 Add "Hello" to stack
 Add "World" to stack
 Get item from stack
-"World" would be returned 4. Add "Again" to stack
+"World" would be returned
+Add "Again" to stack
 Get item from stack
 "Again" would be returned
 Get item from stack
