@@ -8,6 +8,10 @@ class Store {
   public pop(): String | undefined {
     return this.stack.pop();
   }
+
+  public clear() {
+    this.stack = [];
+  }
 }
 
 const instance = new Store();

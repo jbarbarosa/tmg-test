@@ -12,6 +12,19 @@ describe("Store specifications", () => {
           return request(app).put('/store').expect(200).expect({ value: 'Hello' });
         });
       });
+
+      describe("And again adding 'World' to the store", () => {
+
+        afterEach(async () => await request(app).delete('/store'))
+
+        it("Should get the values 'World' and 'Hello' in sequence", async () => {
+          await request(app).post('/store').send({ value: 'Hello' }).expect(201);
+          await request(app).post('/store').send({ value: 'World' }).expect(201);
+
+          await request(app).put('/store').expect(200).expect({ value: 'World' });
+          return request(app).put('/store').expect(200).expect({ value: 'Hello' });
+        });
+      });
     });
 
     describe("When pulling from the store", () => {
