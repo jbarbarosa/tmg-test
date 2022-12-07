@@ -16,6 +16,5 @@ module.exports = {
     ['@babel/plugin-proposal-class-properties'],
     ['module-resolver'],
   ],
-  ignore: ['**/*.spec.ts'],
 };
 

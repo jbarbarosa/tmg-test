@@ -24,8 +24,11 @@
     "baseUrl": ".",
     "noEmit": true,
     "paths": {
-      "@root/*": [
-        "./src/*"
+      "src/*": [
+        "src/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
       ]
     },
     "strict": true,
