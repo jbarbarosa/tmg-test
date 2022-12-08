@@ -11,6 +11,7 @@ store.post('/', (req, res) => {
 store.get('/', (req, res) => {
   const result = instance.get(req.query.key as string)
   if (result) return res.status(200).json({ value: result });
+  return res.sendStatus(204);
 });
 
 export default store;

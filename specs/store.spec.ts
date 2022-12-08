@@ -8,6 +8,12 @@ describe("Store specifications", () => {
 
     beforeEach(() => app = appFactory());
 
+    describe("When getting a key", () => {
+      it("Should return an empty value", () => {
+        return request(app).get('/store?key=name').expect(204).expect({});
+      });
+    });
+
     describe("When adding a key-value pair to the store", () => {
       it("Should confirm that the pair was saved", () => {
         return request(app).post('/store').send({ key: 'name', value: 'bob' }).expect(201);
