@@ -46,9 +46,9 @@ describe("Store specifications", () => {
       describe("And the key-value pair has a ttl", () => {
         describe("When getting the value before the ttl", () => {
           it("Should return the corresponding value", async () => {
-            await request(app).post('/store').send({ key: 'company', value: 'Dunder Mifflin', ttl: 30 });
+            await request(app).post('/store').send({ key: 'company', value: 'Dunder Mifflin', ttl: 40 });
 
-            return request(app).get('/store?key=company').expect(200).expect({ value: 'Dunder Mifflin' });
+            setTimeout(async () => { await request(app).get('/store?key=company').expect(200).expect({ value: 'Dunder Mifflin' }) }, 20);
           });
         });
 

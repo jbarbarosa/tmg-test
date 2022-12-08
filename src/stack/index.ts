@@ -1,11 +1,11 @@
 class Stack {
-  private stack: String[] = [];
+  private stack: string[] = [];
 
-  public add(item: String) {
+  public add(item: string) {
     this.stack.push(item);
   }
 
-  public pop(): String | undefined {
+  public pop(): string | undefined {
     return this.stack.pop();
   }
 
