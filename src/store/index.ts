@@ -1,8 +1,11 @@
 class Store {
   private kvstore = new Map<String, String>();
 
-  public set(pair: { key: String, value: String }) {
+  public set(pair: { key: String, value: String, ttl?: number }) {
     this.kvstore.set(pair.key, pair.value);
+    if (pair.ttl) setTimeout(() => {
+      this.kvstore.delete(pair.key)
+    }, pair.ttl);
   }
 
   public get(key: String): String | undefined {
