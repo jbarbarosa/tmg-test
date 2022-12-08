@@ -1,34 +1,26 @@
-import app from '../src/server';
-import request from 'supertest';
+import request from "supertest";
+import appFactory from "../src/server";
+import { Express } from 'express';
 
-describe("Stack specifications", () => {
-  describe("Given an empty stack", () => {
+describe("Store specifications", () => {
+  describe("Given an empty store", () => {
+    let app: Express;
 
-    describe("When adding 'Hello' to the stack", () => {
-      describe("And pulling from the stack", () => {
-        it("Should get the value 'Hello'", async () => {
-          await request(app).post('/stack').send({ value: 'Hello' }).expect(201);
+    beforeEach(() => app = appFactory());
 
-          return request(app).put('/stack').expect(200).expect({ value: 'Hello' });
-        });
+    describe("When adding a key-value pair to the store", () => {
+      it("Should confirm that the pair was saved", () => {
+        return request(app).post('/store').send({ key: 'name', value: 'bob' }).expect(201);
       });
 
-      describe("And again adding 'World' to the stack", () => {
+      describe("And then retrieving the key", () => {
+        it("Should return the corresponding value", async () => {
+          await request(app).post('/store').send({ key: 'name', value: 'bob' });
 
-        it("Should get the values 'World' and 'Hello' in sequence", async () => {
-          await request(app).post('/stack').send({ value: 'Hello' }).expect(201);
-          await request(app).post('/stack').send({ value: 'World' }).expect(201);
-
-          await request(app).put('/stack').expect(200).expect({ value: 'World' });
-          return request(app).put('/stack').expect(200).expect({ value: 'Hello' });
+          return request(app).get('/store?key=name').expect(200).expect({ value: 'bob' });
         });
-      });
-    });
-
-    describe("When pulling from the stack", () => {
-      it("Should return an empty result", () => {
-        return request(app).put('/stack').expect(204);
       });
     });
   });
 });
+

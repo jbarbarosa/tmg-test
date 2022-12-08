@@ -1,5 +1,5 @@
 import express, { Express } from 'express';
-import { stack } from './routes';
+import { stack, store } from './routes';
 
 function appFactory(): Express {
   const app = express();
@@ -10,6 +10,8 @@ function appFactory(): Express {
   });
 
   app.use('/stack', stack);
+
+  app.use('/store', store);
 
   return app;
 }
