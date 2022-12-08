@@ -26,6 +26,15 @@ describe("Store specifications", () => {
           return request(app).get('/store?key=name').expect(200).expect({ value: 'bob' });
         });
       });
+
+      describe("And then overriding the key", () => {
+        it("Should return the newest value", async () => {
+          await request(app).post('/store').send({ key: 'address', value: 'street123' });
+          await request(app).post('/store').send({ key: 'address', value: '456lane' });
+
+          return request(app).get('/store?key=address').expect(200).expect({ value: '456lane' });
+        });
+      });
     });
 
     describe("When adding multiple key-value pairs", () => {
