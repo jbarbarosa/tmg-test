@@ -14,5 +14,11 @@ store.get('/', (req, res) => {
   return res.sendStatus(204);
 });
 
+store.delete('/', (req, res) => {
+  const result = instance.delete(req.query.key as string);
+  if (result) return res.status(200).json({ value: result });
+  return res.sendStatus(204);
+});
+
 export default store;
 

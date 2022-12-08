@@ -8,6 +8,12 @@ class Store {
   public get(key: String): String | undefined {
     return this.kvstore.get(key);
   }
+
+  public delete(key: String): String | undefined {
+    const result = this.kvstore.get(key);
+    if (result) this.kvstore.delete(key);
+    return result;
+  }
 }
 
 const instance = new Store();

@@ -46,6 +46,15 @@ describe("Store specifications", () => {
         return request(app).get('/store?key=age').expect(200).expect({ value: '30' });
       });
     });
+
+    describe("When deleting a key-value pair", () => {
+      it("Should return the corresponding value once", async () => {
+        await request(app).post('/store').send({ key: 'company', value: 'Dunder Mifflin' });
+
+        await request(app).delete('/store?key=company').expect(200).expect({ value: 'Dunder Mifflin' });
+        return request(app).delete('/store?key=company').expect(204).expect({});
+      });
+    });
   });
 });
 
