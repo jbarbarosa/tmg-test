@@ -25,6 +25,13 @@ describe("Store specifications", () => {
 
           return request(app).get('/store?key=name').expect(200).expect({ value: 'bob' });
         });
+
+        it("Should return the corresponding value multiple times", async () => {
+          await request(app).post('/store').send({ key: 'name', value: 'bob' });
+
+          await request(app).get('/store?key=name').expect(200).expect({ value: 'bob' });
+          return request(app).get('/store?key=name').expect(200).expect({ value: 'bob' });
+        });
       });
 
       describe("And then overriding the key", () => {
