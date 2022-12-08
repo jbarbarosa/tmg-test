@@ -27,6 +27,16 @@ describe("Store specifications", () => {
         });
       });
     });
+
+    describe("When adding multiple key-value pairs", () => {
+      it("Should return the corresponding values", async () => {
+        await request(app).post('/store').send({ key: 'name', value: 'john' });
+        await request(app).post('/store').send({ key: 'age', value: '30' });
+
+        await request(app).get('/store?key=name').expect(200).expect({ value: 'john' });
+        return request(app).get('/store?key=age').expect(200).expect({ value: '30' });
+      });
+    });
   });
 });
 
