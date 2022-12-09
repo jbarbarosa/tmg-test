@@ -1,5 +1,5 @@
 class Stack {
-  private stack: string[] = [];
+  private readonly stack: string[] = [];
 
   public add(item: string) {
     this.stack.push(item);
@@ -8,7 +8,6 @@ class Stack {
   public pop(): string | undefined {
     return this.stack.pop();
   }
-
 }
 
 const instance = new Stack();

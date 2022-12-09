@@ -1,6 +1,7 @@
 import request from "supertest";
 import appFactory from "../src/server";
 import { Express } from 'express';
+import { MockedExpiredTimer } from "../infra/mock.timer.spec";
 
 describe("Store specifications", () => {
   describe("Given an empty store", () => {
@@ -46,17 +47,20 @@ describe("Store specifications", () => {
       describe("And the key-value pair has a ttl", () => {
         describe("When getting the value before the ttl", () => {
           it("Should return the corresponding value", async () => {
-            await request(app).post('/store').send({ key: 'company', value: 'Dunder Mifflin', ttl: 40 });
+            await request(app).post('/store').send({ key: 'company', value: 'Dunder Mifflin', ttl: 400 });
 
-            setTimeout(async () => { await request(app).get('/store?key=company').expect(200).expect({ value: 'Dunder Mifflin' }) }, 20);
+            await request(app).get('/store?key=company').expect(200).expect({ value: 'Dunder Mifflin' });
           });
         });
 
         describe("When getting the value after the ttl", () => {
-          it("Should return an empty value", async () => {
-            await request(app).post('/store').send({ key: 'company', value: 'Dunder Mifflin', ttl: 30 });
 
-            setTimeout(async () => { await request(app).get('/store?key=company').expect(204).expect({}) }, 40);
+          beforeEach(() => app = appFactory(new MockedExpiredTimer()))
+
+          it("Should return an empty value", async () => {
+            await request(app).post('/store').send({ key: 'company', value: 'Dunder Mifflin', ttl: 300 });
+
+            await request(app).get('/store?key=company').expect(204).expect({});
           });
         });
       });
