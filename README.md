@@ -19,3 +19,6 @@ While it would've been possible, for the sake of the challenge, I found it to be
 routes after some time had elapsed, or an actual separate thread that shared the store memory and would store the timestamps and check in whenever some key should expire.
 
 Regarding the stack implementation, I think it's simple enough that the code should speak for itself.
+My only comment is about the HTTP method choices. Because GET requests should never change state if possible, and because of the nature of a stack,
+I opted for a PUT method to retrieve the stack's topmost item. It's debatable if that's the right choice, but I feel confident about defending it.
+
